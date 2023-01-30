@@ -3,6 +3,7 @@ import loginService from '../services/login'
 import blogService from '../services/blogs'
 import { login, setUsername, setPassword } from '../reducers/userReducer'
 import { setNotification } from '../reducers/notificationReducer'
+import { Link } from 'react-router-dom'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -25,31 +26,36 @@ const LoginForm = () => {
   }
 
   return (
-    <form id="loginform" onSubmit={handleLogin}>
-      <div>
-        username
-        <input
-          id="username"
-          type="text"
-          value={userState.username}
-          name="Username"
-          onChange={({ target }) => dispatch(setUsername(target.value))}
-        />
-      </div>
-      <div>
-        password
-        <input
-          id="password"
-          type="password"
-          value={userState.password}
-          name="Password"
-          onChange={({ target }) => dispatch(setPassword(target.value))}
-        />
-      </div>
-      <button id="login-button" type="submit">
-        login
-      </button>
-    </form>
+    <div>
+      <form id="loginform" onSubmit={handleLogin}>
+        <div>
+          Username
+          <input
+            id="username"
+            type="text"
+            value={userState.username}
+            name="Username"
+            onChange={({ target }) => dispatch(setUsername(target.value))}
+          />
+        </div>
+        <div>
+          Password
+          <input
+            id="password"
+            type="password"
+            value={userState.password}
+            name="Password"
+            onChange={({ target }) => dispatch(setPassword(target.value))}
+          />
+        </div>
+        <button id="login-button" type="submit">
+          Login
+        </button>
+      </form>
+      <p>
+        Don&apos;t have an account? Sign up <Link to="/signup">here</Link>.
+      </p>
+    </div>
   )
 }
 
