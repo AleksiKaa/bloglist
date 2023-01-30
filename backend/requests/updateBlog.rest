@@ -1,0 +1,18 @@
+PUT http://localhost:3003/api/blogs/63173503d5981b0162b3b880
+Content-Type: application/json
+
+{
+    "title": "Raamattu",
+    "author":"Jesse",
+    "url":"bible.com",
+    "likes": 2,
+    "user": "63170f5a50015c1261c3aba5"
+}
+
+### bad update
+PUT http://localhost:3003/api/blogs/630f5
+Content-Type: application/json
+
+{
+    "likes": 1234
+}

@@ -1,0 +1,20 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwiaWQiOiI2MzEwYjI2MmUxYjE2MWMyOTQ0NjYxOWUiLCJpYXQiOjE2NjIwNDg0ODIsImV4cCI6MTY2MjA1MjA4Mn0.mZgf-TW1K8cOhRB1RARgx219lnoJ16rDhd2HyZpLjzI
+
+{
+    "title": "jeesus",
+    "author": "herkules",
+    "url": "123.com",
+    "likes": 700,
+    "user": "6310b262e1b161c29446619e"
+}
+
+### bad post
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "url": "123.com",
+    "likes": 1212
+}
