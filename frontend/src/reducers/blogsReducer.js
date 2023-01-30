@@ -15,22 +15,22 @@ const blogsSlice = createSlice({
 })
 
 export const initBlogs = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     const blogs = await blogService.getAll()
     const blogsSorted = blogs.sort((a, b) => b.likes - a.likes)
     dispatch(setBlogs(blogsSorted))
   }
 }
 
-export const createBlog = content => {
-  return async dispatch => {
+export const createBlog = (content) => {
+  return async (dispatch) => {
     const newBlog = await blogService.create(content)
     dispatch(appendBlog(newBlog))
   }
 }
 
-export const likeBlog = blog => {
-  return async dispatch => {
+export const likeBlog = (blog) => {
+  return async (dispatch) => {
     const user = blog.user.id
     const likedBlog = { ...blog, likes: blog.likes + 1 }
     delete likedBlog.user
@@ -41,8 +41,8 @@ export const likeBlog = blog => {
   }
 }
 
-export const deleteBlog = id => {
-  return async dispatch => {
+export const deleteBlog = (id) => {
+  return async (dispatch) => {
     await blogService.remove(id)
     dispatch(initBlogs())
   }

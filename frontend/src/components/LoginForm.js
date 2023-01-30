@@ -5,23 +5,21 @@ import { login, setUsername, setPassword } from '../reducers/userReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
 const LoginForm = () => {
-
   const dispatch = useDispatch()
-  const userState = useSelector(state => state.user)
+  const userState = useSelector((state) => state.user)
 
   const handleLogin = async (event) => {
     event.preventDefault()
     try {
-      const user = await loginService.login({ username: userState.username, password: userState.password })
+      const user = await loginService.login({
+        username: userState.username,
+        password: userState.password,
+      })
 
-      window.localStorage.setItem(
-        'loggedBlogappUser',
-        JSON.stringify(user)
-      )
+      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       blogService.setToken(user.token)
       dispatch(login(user))
-    }
-    catch (exception) {
+    } catch (exception) {
       dispatch(setNotification('wrong username or password'))
     }
   }
@@ -48,10 +46,11 @@ const LoginForm = () => {
           onChange={({ target }) => dispatch(setPassword(target.value))}
         />
       </div>
-      <button id="login-button" type="submit">login</button>
+      <button id="login-button" type="submit">
+        login
+      </button>
     </form>
   )
 }
 
 export default LoginForm
-

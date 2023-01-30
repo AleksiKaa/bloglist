@@ -6,14 +6,13 @@ import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 
 const store = configureStore({
-  reducer:
-    {
-      users: usersReducer,
-      user: userReducer,
-      blog: blogReducer,
-      blogs: blogsReducer,
-      notification: notificationReducer
-    }
+  reducer: {
+    users: usersReducer,
+    user: userReducer,
+    blog: blogReducer,
+    blogs: blogsReducer,
+    notification: notificationReducer,
+  },
 })
 
 export default store

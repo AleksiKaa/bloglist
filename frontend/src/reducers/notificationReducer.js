@@ -21,12 +21,11 @@ export const setNotification = (message, time) => {
 */
 
 export const setNotification = (message) => {
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch(set(message))
     setTimeout(() => dispatch(set(null)), 5000)
   }
 }
-
 
 export const { set } = notificationSlice.actions
 export default notificationSlice.reducer

@@ -21,8 +21,8 @@ const blogSlice = createSlice({
     },
     reset() {
       return { ...initialState }
-    }
-  }
+    },
+  },
 })
 
 export const { setTitle, setAuthor, setUrl, reset } = blogSlice.actions

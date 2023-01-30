@@ -14,36 +14,30 @@ const Menu = ({ username, blogs }) => {
   return (
     <div>
       <Link style={padding} to="/">
-                blogs
+        blogs
       </Link>
       <Link style={padding} to="/users">
-                users
+        users
       </Link>
 
       <p>{username} logged in</p>
-      <LogOut/>
+      <LogOut />
 
       <Routes>
         <Route
           path="/"
           element={
             <div>
-              <BlogList blogs={blogs} user={username}/>
-              <CreateBlog/>
+              <BlogList blogs={blogs} user={username} />
+              <CreateBlog />
             </div>
           }
         />
-        <Route
-          path="/users"
-          element={<Users/>}
-        />
-        <Route
-          path="/users/:id"
-          element={<User/>}
-        />
+        <Route path="/users" element={<Users />} />
+        <Route path="/users/:id" element={<User />} />
         <Route
           path="/blogs/:id"
-          element={<Blog user={username} blogs={blogs}/>}
+          element={<Blog user={username} blogs={blogs} />}
         />
       </Routes>
     </div>

@@ -4,10 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { setTitle, setAuthor, setUrl, reset } from '../reducers/blogReducer'
 
-
 const CreateBlog = () => {
-
-  const input = useSelector(state => state.blog)
+  const input = useSelector((state) => state.blog)
   const dispatch = useDispatch()
   const [visible, setVisible] = useState(false)
 
@@ -21,7 +19,7 @@ const CreateBlog = () => {
       const blog = {
         title: input.title,
         author: input.author,
-        url: input.url
+        url: input.url,
       }
       await addBlog(blog)
 
@@ -29,7 +27,6 @@ const CreateBlog = () => {
 
       dispatch(reset())
       dispatch(setNotification(`${blog.title} by ${blog.author} added`))
-
     } catch (error) {
       dispatch(setNotification('title and author are required'))
     }
@@ -37,13 +34,14 @@ const CreateBlog = () => {
 
   return (
     <div>
-      {!visible ?
-        <button onClick={() => setVisible(true)}>create new</button> :
+      {!visible ? (
+        <button onClick={() => setVisible(true)}>create new</button>
+      ) : (
         <div>
           <h1>Create new</h1>
           <form onSubmit={handleCreate}>
             <div>
-                    title:
+              title:
               <input
                 id="title"
                 type="text"
@@ -52,7 +50,7 @@ const CreateBlog = () => {
                 onChange={({ target }) => dispatch(setTitle(target.value))}
                 placeholder="title"
               />
-                    author:
+              author:
               <input
                 id="author"
                 type="text"
@@ -61,7 +59,7 @@ const CreateBlog = () => {
                 onChange={({ target }) => dispatch(setAuthor(target.value))}
                 placeholder="author"
               />
-                    url:
+              url:
               <input
                 id="url"
                 type="text"
@@ -70,12 +68,14 @@ const CreateBlog = () => {
                 onChange={({ target }) => dispatch(setUrl(target.value))}
                 placeholder="url"
               />
-              <button id="createButton" type="submit">create</button>
+              <button id="createButton" type="submit">
+                create
+              </button>
             </div>
           </form>
           <button onClick={() => setVisible(false)}>cancel</button>
         </div>
-      }
+      )}
     </div>
   )
 }
