@@ -1,77 +1,81 @@
+import { setNotification } from '../reducers/notificationReducer'
+import { createBlog } from '../reducers/blogsReducer'
+import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { setTitle, setAuthor, setUrl, reset } from '../reducers/blogReducer'
 
-const CreateBlog = ({ setVisible, setErrorMessage, addBlog }) => {
 
-  const [title, setTitle] = useState('')
-  const [author, setAuthor] = useState('')
-  const [url, setUrl] = useState('')
+const CreateBlog = () => {
+
+  const input = useSelector(state => state.blog)
+  const dispatch = useDispatch()
+  const [visible, setVisible] = useState(false)
+
+  const addBlog = async (blog) => {
+    dispatch(createBlog(blog))
+  }
 
   const handleCreate = async (event) => {
     event.preventDefault()
-
     try {
-
       const blog = {
-        title: title,
-        author: author,
-        url: url
+        title: input.title,
+        author: input.author,
+        url: input.url
       }
-
       await addBlog(blog)
 
-      setVisible.current.toggleVisibility()
+      setVisible(false)
 
-      setTitle('')
-      setAuthor('')
-      setUrl('')
-      setErrorMessage(`${title} by ${author} added`)
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+      dispatch(reset())
+      dispatch(setNotification(`${blog.title} by ${blog.author} added`))
 
-    } catch (e) {
-      setErrorMessage('Title and author are required')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+    } catch (error) {
+      dispatch(setNotification('title and author are required'))
     }
   }
 
   return (
     <div>
-      <h1>Create new</h1>
-      <form onSubmit={handleCreate}>
+      {!visible ?
+        <button onClick={() => setVisible(true)}>create new</button> :
         <div>
+          <h1>Create new</h1>
+          <form onSubmit={handleCreate}>
+            <div>
                     title:
-          <input
-            id="title"
-            type="text"
-            value={title}
-            name="title"
-            onChange={({ target }) => setTitle(target.value)}
-            placeholder="title"
-          />
+              <input
+                id="title"
+                type="text"
+                value={input.title}
+                name="title"
+                onChange={({ target }) => dispatch(setTitle(target.value))}
+                placeholder="title"
+              />
                     author:
-          <input
-            id="author"
-            type="text"
-            value={author}
-            name="author"
-            onChange={({ target }) => setAuthor(target.value)}
-            placeholder="author"
-          />
+              <input
+                id="author"
+                type="text"
+                value={input.author}
+                name="author"
+                onChange={({ target }) => dispatch(setAuthor(target.value))}
+                placeholder="author"
+              />
                     url:
-          <input
-            id="url"
-            type="text"
-            value={url}
-            name="url"
-            onChange={({ target }) => setUrl(target.value)}
-            placeholder="url"
-          />
-          <button id="createButton" type="submit">create</button>
+              <input
+                id="url"
+                type="text"
+                value={input.url}
+                name="url"
+                onChange={({ target }) => dispatch(setUrl(target.value))}
+                placeholder="url"
+              />
+              <button id="createButton" type="submit">create</button>
+            </div>
+          </form>
+          <button onClick={() => setVisible(false)}>cancel</button>
         </div>
-      </form>
+      }
     </div>
   )
 }

@@ -1,34 +1,40 @@
-import { useState } from 'react'
-import ViewButton from './ViewButton'
-import HiddenTable from './HiddenTable'
 import blogService from '../services/blogs'
+import { useParams } from 'react-router-dom'
+import { likeBlog } from '../reducers/blogsReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Blog = ({ blog, like, user }) => {
+const Blog = ({ blogs }) => {
 
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
+  const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
+  console.log(user)
+
+  const id = useParams().id
+  const blog = blogs.find(b => b.id === id)
+  if (!blog) {
+    return null
   }
 
-  const [visible, setVisible] = useState(false)
-
   const deleteBlog = async () => {
-    window.confirm(`Remove blog ${blog.title} by ${blog.author}`)
-    await blogService.remove(blog.id)
+    if (window.confirm(`Remove blog ${blog.title} by ${blog.author}`))
+      await blogService.remove(blog.id)
   }
 
   return (
-    <div className="blog" style={blogStyle}>
-      <p>{blog.title}</p>
-      <p>{blog.author}</p>
-      {!visible ?
-        <ViewButton setVisible={setVisible} /> :
-        <HiddenTable blog={blog} like={like} setVisible={setVisible} deleteBlog={deleteBlog} user={user} />}
-    </div>
-  )
+    <div>
+      <h1>{blog.title} by {blog.author}</h1>
+      <a href={blog.url}>{blog.url}</a>
+      <p>{blog.likes} likes</p>
+      <form onSubmit={() => dispatch(likeBlog(blog))}>
+        <button type="submit">like</button>
+      </form>
+      <p>added by {blog.user.name ? blog.user.name : blog.user.username}</p>
+      {user.user.username === blog.user.username ?
+        <form onSubmit={() => deleteBlog()}>
+          <button type="submit">delete</button>
+        </form> :
+        null}
+    </div>)
 }
 
 export default Blog
