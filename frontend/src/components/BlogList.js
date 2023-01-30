@@ -6,7 +6,7 @@ const BlogList = ({ blogs, like, user }) => {
     <div className='bloglist'>
       <h2>blogs</h2>
       {blogs.sort((a, b) => b.likes - a.likes).map(blog =>
-        <Blog key={blog.id}  blog={blog} like={like} user={user}/>
+        <Blog key={blog.id} blog={blog} like={like} user={user} />
       )}
     </div>
   )
