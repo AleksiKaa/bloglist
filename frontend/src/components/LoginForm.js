@@ -4,6 +4,7 @@ import blogService from '../services/blogs'
 import { login, setUsername, setPassword } from '../reducers/userReducer'
 import { setNotification } from '../reducers/notificationReducer'
 import { Link } from 'react-router-dom'
+import { resetFields } from '../reducers/userReducer'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -29,7 +30,7 @@ const LoginForm = () => {
     <div>
       <form id="loginform" onSubmit={handleLogin}>
         <div>
-          Username
+          Username:
           <input
             id="username"
             type="text"
@@ -39,7 +40,7 @@ const LoginForm = () => {
           />
         </div>
         <div>
-          Password
+          Password:
           <input
             id="password"
             type="password"
@@ -53,7 +54,11 @@ const LoginForm = () => {
         </button>
       </form>
       <p>
-        Don&apos;t have an account? Sign up <Link to="/signup">here</Link>.
+        Don&apos;t have an account? Sign up{' '}
+        <Link to="/signup" onClick={() => dispatch(resetFields())}>
+          here
+        </Link>
+        .
       </p>
     </div>
   )

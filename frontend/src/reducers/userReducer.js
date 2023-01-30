@@ -28,5 +28,12 @@ export const login = (user) => {
   }
 }
 
+export const resetFields = () => {
+  return async (dispatch) => {
+    dispatch(setUsername(''))
+    dispatch(setPassword(''))
+  }
+}
+
 export const { setUsername, setPassword, setUser } = userSlice.actions
 export default userSlice.reducer
