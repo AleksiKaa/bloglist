@@ -11,8 +11,10 @@ const User = () => {
     return null
   }
 
-  console.log(user)
-  console.log(sessionUser)
+  const handleDeleteAccount = async (event) => {
+    event.preventDefault()
+    console.log('DELETE')
+  }
 
   return (
     <div>
@@ -27,9 +29,9 @@ const User = () => {
         ))}
       </ul>
       {user.username === sessionUser.user.username ? (
-        <form onSubmit={() => console.log('DELETE')}>
+        <form onSubmit={handleDeleteAccount}>
           <div>
-            <button id="deleteAccout" type="submit">
+            <button id="deleteAccount" type="submit">
               Delete account
             </button>
           </div>

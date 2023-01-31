@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt')
-const { default: mongoose } = require('mongoose')
+const jwt = require('jsonwebtoken')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
+const Blog = require('../models/blog')
+const blog = require('../models/blog')
 
 usersRouter.post('/', async (request, response) => {
   const { username, name, password } = request.body
@@ -40,6 +42,29 @@ usersRouter.get('/', async (request, response) => {
     author: 1,
   })
   response.json(users)
+})
+
+usersRouter.delete('/:id', async (request, response) => {
+  id = request.params.id
+
+  const token = request.root
+  const decodedToken = jwt.verify(token, process.env.SECRET)
+
+  if (!token || !decodedToken.id) {
+    return response.status(401).json({ error: 'Not authorized' })
+  }
+
+  if (id !== decodedToken.id) {
+    return response.status(401).json({ error: 'Not authorized' })
+  }
+
+  blogByUser = await Blog.findOne({user: id})
+  if (blogByUser !== null) {
+    return response.status(401).json({error: 'Can not delete account that has recorded blogs'})
+  }
+
+  User.findByIdAndDelete(decodedToken.id)
+  response.status(204).end()
 })
 
 module.exports = usersRouter
