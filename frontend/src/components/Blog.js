@@ -13,7 +13,8 @@ const Blog = ({ blogs }) => {
     return null
   }
 
-  const handleDelete = async () => {
+  const handleDelete = async (event) => {
+    event.preventDefault()
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
       try {
         dispatch(deleteBlog(id))
