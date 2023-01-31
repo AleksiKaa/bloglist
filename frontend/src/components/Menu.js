@@ -8,15 +8,23 @@ import User from './User'
 import Blog from './Blog'
 
 const Menu = ({ username, blogs }) => {
-  if (!username) {
+  const users = useSelector((state) => state.users)
+  if (!username || username === '') {
     return null
   }
   const padding = {
     padding: 5,
   }
 
-  const users = useSelector((state) => state.users)
-  const userId = users.find((n) => n.username === username).id
+  const getUserId = () => {
+    try {
+      return users.find(u => u.username === username).id
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  const userId = getUserId()
 
   return (
     <div>

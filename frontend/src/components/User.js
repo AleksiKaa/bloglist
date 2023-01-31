@@ -22,6 +22,13 @@ const User = () => {
           </li>
         ))}
       </ul>
+      <form onSubmit={() => console.log('DELETE')}>
+        <div>
+          <button id="deleteAccout" type="submit">
+            Delete account
+          </button>
+        </div>
+      </form>
     </div>
   )
 }
