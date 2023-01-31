@@ -31,10 +31,10 @@ export const createBlog = (content) => {
 
 export const likeBlog = (blog) => {
   return async (dispatch) => {
-    const user = blog.user.id
+    const userId = blog.user.id
     const likedBlog = { ...blog, likes: blog.likes + 1 }
     delete likedBlog.user
-    likedBlog.user = user
+    likedBlog.user = userId
     const res = await blogService.update(likedBlog.id, likedBlog)
     console.log(res)
     dispatch(initBlogs())

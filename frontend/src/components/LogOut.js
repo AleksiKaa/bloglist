@@ -4,7 +4,7 @@ const LogOut = () => {
       <form
         onSubmit={() => window.localStorage.removeItem('loggedBlogappUser')}
       >
-        <button type="submit">log out</button>
+        <button type="submit">Log out</button>
       </form>
     </div>
   )

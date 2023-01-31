@@ -14,13 +14,13 @@ const Menu = ({ username, blogs }) => {
   return (
     <div>
       <Link style={padding} to="/">
-        blogs
+        Blogs
       </Link>
       <Link style={padding} to="/users">
-        users
+        Users
       </Link>
 
-      <p>{username} logged in</p>
+      <p>Logged in as {username}</p>
       <LogOut />
 
       <Routes>

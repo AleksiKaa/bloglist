@@ -11,7 +11,7 @@ const BlogList = ({ blogs }) => {
 
   return (
     <div className="bloglist">
-      <h2>blogs</h2>
+      <h2>Blogs</h2>
       <ul>
         {blogs.map((blog) => (
           <li key={blog.id} style={blogStyle}>

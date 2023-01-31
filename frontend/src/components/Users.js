@@ -11,7 +11,7 @@ const Users = () => {
         <tbody>
           <tr>
             <th></th>
-            <th>blogs created</th>
+            <th>Blog posts created</th>
           </tr>
           {userList.map((user) => (
             <tr key={user.id}>

@@ -35,13 +35,13 @@ const CreateBlog = () => {
   return (
     <div>
       {!visible ? (
-        <button onClick={() => setVisible(true)}>create new</button>
+        <button onClick={() => setVisible(true)}>Create new</button>
       ) : (
         <div>
-          <h1>Create new</h1>
+          <h1>Create a new post</h1>
           <form onSubmit={handleCreate}>
             <div>
-              title:
+              Title:
               <input
                 id="title"
                 type="text"
@@ -50,7 +50,7 @@ const CreateBlog = () => {
                 onChange={({ target }) => dispatch(setTitle(target.value))}
                 placeholder="title"
               />
-              author:
+              Author:
               <input
                 id="author"
                 type="text"
@@ -59,7 +59,7 @@ const CreateBlog = () => {
                 onChange={({ target }) => dispatch(setAuthor(target.value))}
                 placeholder="author"
               />
-              url:
+              URL:
               <input
                 id="url"
                 type="text"
@@ -69,11 +69,11 @@ const CreateBlog = () => {
                 placeholder="url"
               />
               <button id="createButton" type="submit">
-                create
+                Create
               </button>
             </div>
           </form>
-          <button onClick={() => setVisible(false)}>cancel</button>
+          <button onClick={() => setVisible(false)}>Cancel</button>
         </div>
       )}
     </div>
