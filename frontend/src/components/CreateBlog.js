@@ -9,10 +9,6 @@ const CreateBlog = () => {
   const dispatch = useDispatch()
   const [visible, setVisible] = useState(false)
 
-  const addBlog = async (blog) => {
-    dispatch(createBlog(blog))
-  }
-
   const handleCreate = async (event) => {
     event.preventDefault()
     try {
@@ -21,7 +17,7 @@ const CreateBlog = () => {
         author: input.author,
         url: input.url,
       }
-      await addBlog(blog)
+      dispatch(createBlog(blog))
 
       setVisible(false)
 

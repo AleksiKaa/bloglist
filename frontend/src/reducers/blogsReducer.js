@@ -35,8 +35,7 @@ export const likeBlog = (blog) => {
     const likedBlog = { ...blog, likes: blog.likes + 1 }
     delete likedBlog.user
     likedBlog.user = userId
-    const res = await blogService.update(likedBlog.id, likedBlog)
-    console.log(res)
+    await blogService.update(likedBlog.id, likedBlog)
     dispatch(initBlogs())
   }
 }
