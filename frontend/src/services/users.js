@@ -6,4 +6,8 @@ const getAll = async () => {
   return response.data
 }
 
-export default { getAll }
+const deleteUser = async (id) => {
+  await axios.delete(`${baseUrl}/${id}`)
+}
+
+export default { getAll, deleteUser }
