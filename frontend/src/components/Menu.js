@@ -18,7 +18,7 @@ const Menu = ({ username, blogs }) => {
 
   const getUserId = () => {
     try {
-      return users.find(u => u.username === username).id
+      return users.find((u) => u.username === username).id
     } catch (e) {
       console.log(e)
     }

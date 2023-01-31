@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom'
 
 const User = () => {
   const users = useSelector((state) => state.users)
+  const sessionUser = useSelector((state) => state.user)
   const id = useParams().id
   const user = users.find((n) => n.id === id)
   if (!user) {
     return null
   }
+
+  console.log(user)
+  console.log(sessionUser)
 
   return (
     <div>
@@ -22,13 +26,15 @@ const User = () => {
           </li>
         ))}
       </ul>
-      <form onSubmit={() => console.log('DELETE')}>
-        <div>
-          <button id="deleteAccout" type="submit">
-            Delete account
-          </button>
-        </div>
-      </form>
+      {user.username === sessionUser.user.username ? (
+        <form onSubmit={() => console.log('DELETE')}>
+          <div>
+            <button id="deleteAccout" type="submit">
+              Delete account
+            </button>
+          </div>
+        </form>
+      ) : null}
     </div>
   )
 }
