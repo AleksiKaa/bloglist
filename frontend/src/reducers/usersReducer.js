@@ -18,5 +18,13 @@ export const getUsers = () => {
   }
 }
 
+export const deleteUser = (id) => {
+  return async (dispatch) => {
+    await userService.deleteUser(id)
+    const users = await userService.getAll()
+    dispatch(setUsers(users))
+  }
+}
+
 export const { setUsers } = usersSlice.actions
 export default usersSlice.reducer

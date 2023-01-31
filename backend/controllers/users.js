@@ -57,10 +57,8 @@ usersRouter.delete('/:id', async (request, response) => {
 
   blogByUser = await Blog.findOne({user: request.params.id})
   if (blogByUser !== null) {
-    return response.status(401).json({error: 'Can not delete account that has recorded blogs'})
+    return response.status(403).json({error: 'Can not delete account that has recorded blogs'})
   }
-
-  console.log("Authorized")
 
   await User.findByIdAndDelete(request.params.id)
   response.status(204).end()

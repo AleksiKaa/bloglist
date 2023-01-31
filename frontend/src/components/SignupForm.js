@@ -19,7 +19,7 @@ const SignUpForm = () => {
       dispatch(resetFields())
       dispatch(setNotification('Account successfully created'))
     } catch (e) {
-      console.log(e)
+      dispatch(setNotification('Username must be unique'))
     }
   }
 

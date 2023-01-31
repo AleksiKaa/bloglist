@@ -6,6 +6,10 @@ const setToken = (newToken) => {
   token = `bearer ${newToken}`
 }
 
+const getToken = () => {
+  return token
+}
+
 const getAll = async () => {
   const response = await axios.get(baseUrl)
   return response.data
@@ -36,6 +40,7 @@ const blogService = {
   getAll: getAll,
   getBlog: getBlog,
   setToken: setToken,
+  getToken: getToken,
   create: create,
   update: update,
   remove: remove,

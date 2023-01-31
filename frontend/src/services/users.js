@@ -1,4 +1,5 @@
 import axios from 'axios'
+import blogService from './blogs'
 const baseUrl = '/api/users'
 
 const getAll = async () => {
@@ -7,7 +8,13 @@ const getAll = async () => {
 }
 
 const deleteUser = async (id) => {
-  await axios.delete(`${baseUrl}/${id}`)
+  const config = { headers: { Authorization: blogService.getToken() } }
+
+  try {
+    await axios.delete(`${baseUrl}/${id}`, config)
+  } catch (e) {
+    console.log
+  }
 }
 
 export default { getAll, deleteUser }

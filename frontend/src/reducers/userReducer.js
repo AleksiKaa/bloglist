@@ -28,6 +28,14 @@ export const login = (user) => {
   }
 }
 
+export const reset = () => {
+  return async (dispatch) => {
+    dispatch(setUser(null))
+    dispatch(setUsername(''))
+    dispatch(setPassword(''))
+  }
+}
+
 export const resetFields = () => {
   return async (dispatch) => {
     dispatch(setUsername(''))
