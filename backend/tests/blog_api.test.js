@@ -34,6 +34,7 @@ describe('blogs get request tests', () => {
   })
 })
 
+//broken because no auth in tests
 describe('blogs post request tests', () => {
   test('new blogs can be posted', async () => {
     const newBlog = {
@@ -183,7 +184,7 @@ describe('User creation tests', () => {
 
   test('username must be atleast 3 characters long', async () => {
     const newUser = {
-      username: 'aleksikaa',
+      username: 'al',
       name: 'Aleksi',
       password: 'salainen',
     }

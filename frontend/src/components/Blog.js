@@ -1,7 +1,7 @@
-//import blogService from '../services/blogs'
 import { useParams } from 'react-router-dom'
 import { likeBlog, deleteBlog } from '../reducers/blogsReducer'
 import { useDispatch, useSelector } from 'react-redux'
+import { setNotification } from '../reducers/notificationReducer'
 
 const Blog = ({ blogs }) => {
   const dispatch = useDispatch()
@@ -18,6 +18,7 @@ const Blog = ({ blogs }) => {
     if (window.confirm(`Remove blog ${blog.title} by ${blog.author}?`)) {
       try {
         dispatch(deleteBlog(id))
+        dispatch(setNotification(`Deleted ${blog.title}`))
       } catch (e) {
         console.log(e)
       }

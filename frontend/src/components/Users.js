@@ -6,11 +6,10 @@ const Users = () => {
 
   return (
     <div>
-      <h2>Users</h2>
       <table>
         <tbody>
           <tr>
-            <th></th>
+            <th>User</th>
             <th>Blog posts created</th>
           </tr>
           {userList.map((user) => (

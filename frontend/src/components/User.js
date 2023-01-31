@@ -16,7 +16,6 @@ const User = () => {
       <ul>
         {user.blogs.map((b) => (
           <li key={b.id}>
-            {' '}
             <Link to={`/blogs/${b.id}`}>
               {b.title} by {b.author}
             </Link>

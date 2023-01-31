@@ -19,10 +19,8 @@ const Menu = ({ username, blogs }) => {
       <Link style={padding} to="/users">
         Users
       </Link>
-
       <p>Logged in as {username}</p>
       <LogOut />
-
       <Routes>
         <Route
           path="/"
