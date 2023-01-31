@@ -42,7 +42,7 @@ const Blog = ({ blogs }) => {
       <a href={blog.url}>{blog.url}</a>
       <p>{blog.likes} Likes</p>
       <form onSubmit={handleLike}>
-        <button type="submit">like</button>
+        <button type="submit">Like</button>
       </form>
       <p>Added by {blog.user.name ? blog.user.name : blog.user.username}</p>
       {user.user.username === blog.user.username ? (
