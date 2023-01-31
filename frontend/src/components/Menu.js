@@ -1,4 +1,5 @@
 import { Routes, Route, Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import BlogList from './BlogList'
 import LogOut from './LogOut'
 import CreateBlog from './CreateBlog'
@@ -7,9 +8,15 @@ import User from './User'
 import Blog from './Blog'
 
 const Menu = ({ username, blogs }) => {
+  if (!username) {
+    return null
+  }
   const padding = {
     padding: 5,
   }
+
+  const users = useSelector((state) => state.users)
+  const userId = users.find((n) => n.username === username).id
 
   return (
     <div>
@@ -18,6 +25,9 @@ const Menu = ({ username, blogs }) => {
       </Link>
       <Link style={padding} to="/users">
         Users
+      </Link>
+      <Link style={padding} to={`/users/${userId}`}>
+        My profile
       </Link>
       <p>Logged in as {username}</p>
       <LogOut />
